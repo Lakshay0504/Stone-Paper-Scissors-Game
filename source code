@@ -1,0 +1,107 @@
+#include <iostream> 
+using namespace std; 
+  
+
+char getbotMove() 
+{ 
+    int move; 
+    // generating random number between 0 - 2 
+    
+    move = rand() % 3; 
+  
+    // getting random number using rand() function
+    if (move == 0) { 
+        return 'p'; 
+    } 
+    else if (move == 1) { 
+        return 's'; 
+    } 
+    return 'r'; 
+} 
+  
+ int getResults(char playerMove, char botMove) 
+{ 
+    // condition for draw 
+    if (playerMove == botMove) { 
+        return 0; 
+    } 
+  
+    // condition for who wins the game
+    if (playerMove == 's' && botMove == 'p') { 
+        return 1; 
+    } 
+    if (playerMove == 's' && botMove == 'r') { 
+        return -1; 
+    } 
+    if (playerMove == 'p' && botMove == 'r') { 
+        return 1; 
+    } 
+    if (playerMove == 'p' && botMove == 's') { 
+        return -1; 
+    } 
+    if (playerMove == 'r' && botMove == 'p') { 
+        return -1; 
+    } 
+    if (playerMove == 'r' && botMove == 's') { 
+        return 1; 
+    } 
+      
+    return 0; 
+} 
+  
+int main() 
+{ cout<<"\n\t\t\t\t\tMade by:-Lakshay Poonia\n";
+    cout << "\n\t\t\tWelcome to Stone Paper Scissors "
+            "Game\n"; 
+  char cont='y';
+  while(cont=='y'){
+    char playerMove; 
+    cout << "\n\t\t\tEnter r for ROCK, p for PAPER, and s "
+            "for SCISSORS\n\t\t\t\t\t"; 
+  
+    // input from the user 
+    while(1) { 
+        cin >> playerMove; 
+        if (playerMove == 'p' || playerMove == 'r' || playerMove == 's') { 
+            break; 
+        } 
+        else { 
+            cout << "\n\t\t\t\t\t!!!!Invalid Input!!!!" << endl; 
+            cout<< "\n\t\t\t\t\tEnter valid input" << endl;
+        } 
+    } 
+      
+      
+  
+    // computer move 
+    char botMove = getbotMove(); 
+  
+    int result = getResults(playerMove, botMove); 
+  
+    // priting result based on who won the game 
+    if (result == 0) { 
+
+        cout << "\n\t\t\tGame Draw!\n"; 
+    } 
+    else if (result == 1) { 
+        cout << "\n\t\t\tCongratulations! Player won the "
+                "game!\n"; 
+    } 
+    else { 
+        cout << "\n\t\t\tOh! Computer won the game!\n"; 
+    } 
+  
+    // showing both  moves 
+    cout << "\t\t\tYour Move: " << playerMove << endl; 
+    cout << "\t\t\tComputer's Move: " << botMove << endl; 
+    cout<<"\n\n\t\t\t If you want to continue "<<endl;
+    cout<<"\t\t\t Enter y for yes,and n for no"<<" ";
+    cin>>cont;
+    
+  }
+  if(cont!='y'||cont!='n'){
+      cout<<"\t\t\t You exited from game"<<endl<<"\t\t\tThank you";
+  }
+    return 0; 
+    
+}
